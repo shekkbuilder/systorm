@@ -5,7 +5,7 @@ https://scorchsecurity.wordpress.com/2016/07/31/nasm-and-friends/
 
 ##Usage:
 To use the methods defined in systorm, you have to include "systorm.inc" with: `%include "systorm.inc"`
-You have to include each method that you use (excepting syscalls) with `use func1, func2, ...`
+You also have to include each method that you use (excepting syscalls) with `use func1, func2, ...`
 
 A simple program is:
 ```
