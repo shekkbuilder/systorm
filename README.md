@@ -1,28 +1,22 @@
-# SYSTORM
+# Systorm
 NASM Standard Library for shellcode
 ---
 https://scorchsecurity.wordpress.com/2016/07/31/nasm-and-friends/
 
 ##Usage:
-To use functions defined within the .inc files, you have to include that file: `%include "syscall.inc"`
-If using "thread.inc", "socket.inc", or "utils.inc", you have to include each function that you want to use.
-For example: write `use.thread.create` to use thread.create.
+To use the methods defined in systorm, you have to include "systorm.inc" with: `%include "systorm.inc"`
+You have to include each method that you use (excepting syscalls) with `use func1, func2, ...`
 
 A simple program is:
 ```
-%include "syscall.inc"
-; %include "thread.inc"
-%include "socket.inc"
-%include "utils.inc"
+%include "systorm.inc"
 
 global _start
 ; _start goes first
 _start:
     jmp main
 
-; syscalls do not need to be included with 'use.*'
-use.sock.socket
-use.sock.connect
+use sock.socket, sock.connect
 
 main:
 	stackframe 4
@@ -47,16 +41,13 @@ A simple reverse shell (167 bytes) is:
 ```
 [BITS 32]
 
-%include "syscall.inc"
-%include "socket.inc"
-%include "utils.inc"
+%include "systorm.inc"
 
 global _start
 _start:
     jmp main
 
-use.sock.socket
-use.sock.connect
+use sock.socket, sock.connect
 
 main:
     stackframe 4
